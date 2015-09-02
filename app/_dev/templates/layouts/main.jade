@@ -1,0 +1,47 @@
+doctype html
+html.html
+    head
+        //Основные мета теги
+        meta(charset="utf-8")
+        meta(http-equiv="x-ua-compatible" content="ie=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        //Заголовок страницы
+        block title
+        //SEO
+        meta(name="description" content="")
+        meta(name="keywords" content="")
+        meta(name="author" content="")
+        //CSS
+        // build:css css/vendor.css
+        // bower:css
+        link(rel='stylesheet', href='/bower_components/normalize.css/normalize.css')
+        link(rel='stylesheet', href='/bower_components/slick-carousel/slick/slick.css')
+        link(rel='stylesheet', href='/bower_components/slick-carousel/slick/slick-theme.css')
+        // endbower
+        // endbuild
+        block css
+        //JS
+        <!-- build:js js/modernizr.min.js -->
+        script(src="/bower_components/modernizr/modernizr.js")
+        <!-- endbuild -->
+    body.body
+        <!--[if lt IE 8]>
+        <p class="browserupgrade">Ваш браузер <strong>устарел</strong>. Пожалуйста <a href="http://browsehappy.com/">обновите</a> его.</p>
+        <![endif]-->
+        .wrapper
+            header.main-header
+                block header
+            section.middle
+                block middle
+        footer.main-footer
+            block footer
+        //JS
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
+        script window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')
+        // build:js js/vendor.js
+        // bower:js
+        script(src='/bower_components/slick-carousel/slick/slick.min.js')
+        script(src='/bower_components/jquery.columnizer/src/jquery.columnizer.js')
+        // endbower
+        // endbuild
+        block js

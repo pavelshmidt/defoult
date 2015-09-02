@@ -1,0 +1,17 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Webdeveloper: Shmidt Pavel Alexandrovich
+
+# THANKS
+
+    None
+
+# TECHNOLOGY COLOPHON
+
+    Last update: YYYY/MM/DD
+    Standards: HTML5, CSS3.
+    Components: <Modernizr, jQuery, Bootstrap.>
+    Software: PHPStorm.

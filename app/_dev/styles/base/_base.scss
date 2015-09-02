@@ -1,0 +1,130 @@
+// Начальные настройки
+$container-width: 1000px;
+$footer-height: 228px;
+
+// Прижимние футера к низу
+.html {
+  height: 100%;
+}
+.body {
+  height: 100%;
+}
+.wrapper {
+  min-height: 100%;
+  min-width: $container-width;
+  &:after {
+    content: '';
+    display: block;
+    height: $footer-height;
+  }
+}
+.main-footer {
+  margin-top: $footer-height*-1;
+  min-width: $container-width;
+  height: $footer-height;
+}
+// Контейнеры
+.container {
+  position: relative;
+  margin: 0 auto;
+  width: $container-width;
+  height: 100%;
+}
+.container-middle {
+  position: relative;
+  margin: 0 auto;
+  width: $container-width;
+  height: 100%;
+  @extend %middle;
+}
+.container-cleafix {
+  position: relative;
+  margin: 0 auto;
+  width: $container-width;
+  height: 100%;
+  @extend %clearfix;
+}
+// Clearfix
+%clearfix {
+  &:before,&:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.clearfix {
+  @extend %clearfix;
+}
+//Дополнительные классы
+.bold {
+  font-weight: bold;
+}
+.text-hide {
+  text-align: left;
+  display: inline-block;
+  text-indent: -9999px;
+}
+%word-wrap {
+  display: block;
+  white-space: pre;           /* CSS 2.0 */
+  white-space: pre-wrap;      /* CSS 2.1 */
+  white-space: pre-line;      /* CSS 3.0 */
+  white-space: -pre-wrap;     /* Opera 4-6 */
+  white-space: -o-pre-wrap;   /* Opera 7 */
+  white-space: -moz-pre-wrap; /* Mozilla */
+  white-space: -hp-pre-wrap;  /* HP Printers */
+  word-wrap: break-word;      /* IE 5+ */
+}
+.col-left {
+  float: left;
+  @extend %clearfix;
+}
+.col-right {
+  float: right;
+  @extend %clearfix;
+}
+.wrap {
+  position: relative;
+  display: block;
+  @extend %clearfix;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+// Способы вертикального выравнивания
+%middle {
+  &:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+%pos-l {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -1.625em;
+}
+%pos-r {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -1.625em;
+}
+%pos-c {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -1.625em;
+  margin-left: -9.625em;
+}
