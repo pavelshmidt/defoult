@@ -29,6 +29,7 @@ $footer-height: 228px;
   margin: 0 auto;
   width: $container-width;
   height: 100%;
+  @extend %clearfix;
 }
 .container-middle {
   position: relative;
@@ -108,23 +109,4 @@ $footer-height: 228px;
     height: 100%;
     vertical-align: middle;
   }
-}
-%pos-l {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  margin-top: -1.625em;
-}
-%pos-r {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  margin-top: -1.625em;
-}
-%pos-c {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-top: -1.625em;
-  margin-left: -9.625em;
 }
