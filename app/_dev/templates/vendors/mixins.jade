@@ -26,12 +26,13 @@ mixin form (form)
                     div(class=form.prefix + 'form__title')=form.title[index]
                     input(class=form.prefix + 'form__input')&attributes(form.attr[index])
             each text,type in form.btn
-                button(type=type, class=form.prefix + 'form__submit')=text
+                button(type=type, class=form.prefix + 'form__' + type)=text
 //- Блок контакт
 mixin cont (cont)
     -if (cont.prefix === undefined) {cont.prefix=''} else {cont.prefix=cont.prefix+'-'}
     div(class=cont.prefix + cont.type + '__wrap')
-        a(href=cont.type + ':'+ cont.val, class=cont.prefix + cont.type + '__link')=cont.text
+        div(class=cont.prefix + cont.type)
+            a(href=cont.type + ':'+ cont.val, class=cont.prefix + cont.type + '__link')=cont.text
 //- Айтемы секции
 mixin item (items)
     div(class=items.name + '__wrap')
