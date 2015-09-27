@@ -1,3 +1,5 @@
+//- Подключение миксинов
+include ../vendors/mixins
 doctype html
 html.html
     head
@@ -28,13 +30,7 @@ html.html
         <!--[if lt IE 8]>
         <p class="browserupgrade">Ваш браузер <strong>устарел</strong>. Пожалуйста <a href="http://browsehappy.com/">обновите</a> его.</p>
         <![endif]-->
-        .wrapper
-            header.main-header
-                block header
-            section.middle
-                block middle
-        footer.main-footer
-            block footer
+        block contant
         //JS
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
         script window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')

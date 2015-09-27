@@ -1,0 +1,43 @@
+//- Лого
+mixin logo(logo)
+    -if (logo.prefix === undefined) {logo.prefix=''} else {logo.prefix=logo.prefix+'-'}
+    div(class=logo.prefix + 'logo__wrap')
+            a(href=logo.link, class=logo.prefix + 'logo')
+                img(src=logo.img, class=logo.prefix + 'logo__img')
+                span.text-hide= logo.text
+//- Меню
+mixin nav (navigatoin,prefix)
+    -if (prefix === undefined) {prefix=''} else {prefix=prefix+'-'}
+        nav(class=prefix + 'nav')
+        div(class=prefix + 'menu__wrap')
+            ul(class=prefix + 'menu')
+                each link,text in navigatoin
+                    li(class=prefix + 'menu__item')
+                        a(href=link, class=prefix + 'menu__link')= text
+//- Формы
+mixin form (form)
+    -if (form.prefix === undefined) {form.prefix=''} else {form.prefix=form.prefix+'-'}
+    div(class=form.prefix + 'form__wrap')
+        form(class=form.prefix + 'form', id=form.prefix + 'form')
+            each val,index in form.title
+                label(class=form.prefix + 'form__label')
+                    div(class=form.prefix + 'form__title')=form.title[index]
+                    input(class=form.prefix + 'form__input')&attributes(form.attr[index])
+            each text,type in form.btn
+                button(type=type, class=form.prefix + 'form__submit')=text
+//- Блок контакт
+mixin cont (cont)
+    -if (cont.prefix === undefined) {cont.prefix=''} else {cont.prefix=cont.prefix+'-'}
+    div(class=cont.prefix + cont.type + '__wrap')
+        a(href=cont.type + ':'+ cont.val, class=cont.prefix + cont.type + '__link')=cont.text
+//- Айтемы секции
+mixin items (items)
+    -for (var i = 0;i< items.length;i++) {
+        div(class=items[i].name + '__wrap')
+            section(class=items[i].name)
+                img(class=items[i].name + '__img', src=items[i].img)
+                h2(class=items[i].name + '__title')=items[i].title
+                if items[i].subtitle != undefined
+                    div(class=items[i].name + '__subtitle')=items[i].subtitle
+                p(class=items[i].name + '__desc')=items[i].desc
+    -}
