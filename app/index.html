@@ -14,9 +14,6 @@
     <!--CSS-->
     <!-- build:css css/vendor.css-->
     <!-- bower:css-->
-    <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css">
-    <link rel="stylesheet" href="/bower_components/slick-carousel/slick/slick.css">
-    <link rel="stylesheet" href="/bower_components/slick-carousel/slick/slick-theme.css">
     <!-- endbower-->
     <!-- endbuild-->
     <!-- build:css css/main.css-->
@@ -30,7 +27,39 @@
     <p class="browserupgrade">Ваш браузер <strong>устарел</strong>. Пожалуйста <a href="http://browsehappy.com/">обновите</a> его.</p>
     <![endif]-->
     <div class="wrapper">
-      <header class="main-header"></header>
+      <header class="main-header">
+        <div class="logo__wrap"><a href="#" class="logo"><img src="/imageы/logo.png" class="logo__img"/><span class="text-hide">Text</span></a></div>
+        <nav class="nav">
+          <div class="menu__wrap">
+            <ul class="menu">
+              <li class="menu__item"><a href="#" class="menu__link">MenuItem1</a></li>
+              <li class="menu__item"><a href="#" class="menu__link">MenuItem2</a></li>
+              <li class="menu__item"><a href="#" class="menu__link">MenuItem3</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="form__wrap">
+          <form id="form" class="form">
+            <label class="form__label">
+              <div class="form__title">Title1</div>
+              <input class="form__input" placeholder="attr1"/>
+            </label>
+            <label class="form__label">
+              <div class="form__title">Title2</div>
+              <input class="form__input" placeholder="attr2"/>
+            </label>
+            <button type="submit" class="form__submit">Отправить</button>
+          </form>
+        </div>
+        <div class="tel__wrap"><a href="tel:+79114968713" class="tel__link">+79114968713</a></div>
+        <div class="name__wrap">
+          <section class="name"><img src="/images/Image1.png" class="name__img"/>
+            <h2 class="name__title">Title</h2>
+            <div class="name__subtitle">subtitle</div>
+            <p class="name__desc">Description Description Description</p>
+          </section>
+        </div>
+      </header>
       <section class="middle">
         <!--include ../common/middle-->
       </section>
@@ -41,8 +70,6 @@
     <script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
     <!-- build:js js/vendor.js-->
     <!-- bower:js-->
-    <script src="/bower_components/slick-carousel/slick/slick.min.js"></script>
-    <script src="/bower_components/jquery.columnizer/src/jquery.columnizer.js"></script>
     <!-- endbower-->
     <!-- endbuild-->
     <!-- build:js js/main.js-->
