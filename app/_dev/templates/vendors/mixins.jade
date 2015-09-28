@@ -6,16 +6,24 @@ mixin logo(logo)
                 img(src=logo.img, class=logo.prefix + 'logo__img')
                 if logo.text!=undefined
                     div(class=logo.prefix + 'logo__text')=logo.text
-                span.text-hide= logo.textHide
+                if logo.textHide!=undefined
+                    span.text-hide= logo.textHide
 //- Меню
-mixin nav (navigatoin,prefix)
-    -if (prefix === undefined) {prefix=''} else {prefix=prefix+'-'}
-        nav(class=prefix + 'nav')
-            div(class=prefix + 'menu__wrap')
-                ul(class=prefix + 'menu')
-                    each link,text in navigatoin
-                        li(class=prefix + 'menu__item')
-                            a(href=link, class=prefix + 'menu__link')= text
+mixin nav (navigatoin)
+    -if (navigatoin.prefix === undefined) {navigatoin.prefix=''} else {navigatoin.prefix=navigatoin.prefix+'-'}
+        nav(class=navigatoin.prefix + 'nav')
+            div(class=navigatoin.prefix + 'menu__wrap')
+                ul(class=navigatoin.prefix + 'menu')
+                    each link,text in navigatoin.nav
+                        li(class=navigatoin.prefix + 'menu__item')
+                            a(href=link, class=navigatoin.prefix + 'menu__link')= text
+                            if navigatoin.subnav!=undefined
+                                -if (navigatoin.subnav.prefix === undefined) {navigatoin.subnav.prefix=''} else {navigatoin.subnav.prefix=navigatoin.subnav.prefix+'-'}
+                                div(class=navigatoin.subnav.prefix + navigatoin.subnav.name + '__wrap', id=navigatoin.subnav.name)
+                                    ul(class=navigatoin.subnav.prefix + navigatoin.subnav.name)
+                                        each link,text in navigatoin.subnav.nav
+                                            li(class=navigatoin.subnav.prefix + navigatoin.subnav.name + '__item')
+                                                a(href=link, class=navigatoin.subnav.prefix + navigatoin.subnav.name + '__link')= text
 //- Формы
 mixin form (form)
     -if (form.prefix === undefined) {form.prefix=''} else {form.prefix=form.prefix+'-'}
