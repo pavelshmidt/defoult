@@ -1,6 +1,6 @@
 // Начальные настройки
-$container-width: 1000px;
-$footer-height: 228px;
+$container-width: 1020px;
+$footer-height: 1000px;
 
 // Прижимние футера к низу
 .html {
@@ -11,7 +11,7 @@ $footer-height: 228px;
 }
 .wrapper {
   min-height: 100%;
-  min-width: $container-width;
+  width: 100%;
   &:after {
     content: '';
     display: block;
@@ -20,26 +20,26 @@ $footer-height: 228px;
 }
 .main-footer {
   margin-top: $footer-height*-1;
-  min-width: $container-width;
+  max-width: $container-width;
   height: $footer-height;
 }
 // Контейнеры
 .container {
   position: relative;
   margin: 0 auto;
-  width: $container-width;
+  max-width: $container-width;
   height: 100%;
   @extend %clearfix;
 }
 .container-middle {
   position: relative;
   margin: 0 auto;
-  width: $container-width;
+  max-width: $container-width;
   height: 100%;
   @extend %middle;
 }
-.container-cleafix {
-  position: relative;
+.container-abs {
+  position: absolute;
   margin: 0 auto;
   width: $container-width;
   height: 100%;

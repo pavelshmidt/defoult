@@ -44,8 +44,10 @@ mixin cont (cont)
 //- Айтемы секции
 mixin item (items)
     div(class=items.name + '__wrap')
+        -if (items.AddImgWrapClass === undefined) {items.AddImgWrapClass=''} else {items.AddImgWrapClass=' ' + items.name + '__img-wrap' + '_' + items.AddImgWrapClass}
         section(class=items.name)
-            img(class=items.name + '__img', src=items.img)
+            div(class=items.name + '__img-wrap' + items.AddImgWrapClass)
+                img(class=items.name + '__img', src=items.img)
             h2(class=items.name + '__title')=items.title
             if items.subtitle != undefined
                 div(class=items.name + '__subtitle')=items.subtitle
