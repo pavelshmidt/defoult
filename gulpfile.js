@@ -15,6 +15,7 @@ var gulp = require("gulp"),
     browserSync = require('browser-sync'),
     gutil = require('gulp-util'),
     ftp = require('vinyl-ftp'),
+    spritesmith = require('gulp.spritesmith'),
     reload = browserSync.reload;
 
 // ====================================================
@@ -34,7 +35,11 @@ gulp.task('jade', function() {
 // Компиляция  Sass в CSS
 gulp.task('sass', function () {
     gulp.src('app/_dev/styles/**/*.scss')
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass({
+            includePaths: [
+                'app/bower_components/foundation/scss'
+            ]
+        }).on('error', sass.logError))
         .pipe(gulp.dest('app/styles'))
         .pipe(reload({stream: true}));
 });
@@ -68,6 +73,19 @@ gulp.task('watch', function () {
         'app/scripts/**/*.js',
         'app/styles/**/*.css'
     ]).on('change', reload);
+});
+
+gulp.task('sprite', function() {
+    var spriteData =
+        gulp.src('app/images/sprite2/*.*') // путь, откуда берем картинки для спрайта
+            .pipe(spritesmith({
+                imgName: 'sprite.png',
+                cssName: 'sprite.css',
+                imgPath:'/images/sprite.png'
+            }));
+
+    spriteData.img.pipe(gulp.dest('app/images/')); // путь, куда сохраняем картинку
+    spriteData.css.pipe(gulp.dest('app/styles/')); // путь, куда сохраняем стили
 });
 
 // Задача по-умолчанию 
@@ -115,7 +133,7 @@ gulp.task('useref', function () {
     return gulp.src('app/*.html')
         .pipe(assets)
         .pipe(gulpif('*.js', uglify()))
-        .pipe(gulpif('*.css', minifyCss({compatibility: 'ie8'})))
+        .pipe(gulpif('*.css', minifyCss({compatibility: 'ie8'},{processImportFrom:["!fonts.googleapis.com"]})))
         .pipe(assets.restore())
         .pipe(useref())
         .pipe(gulp.dest('dist'));
@@ -149,7 +167,7 @@ gulp.task('extras', function () {
 gulp.task('jquery', function () {
     return gulp.src([
         'app/bower_components/jquery/dist/jquery.min.js'
-    ]).pipe(gulp.dest('dist/scripts'));
+    ]).pipe(gulp.dest('dist/js'));
 });
 // Сборка и вывод размера содержимого папки dist
 gulp.task('dist', ['useref', 'images', 'fonts', 'extras', 'jquery'], function () {
@@ -180,9 +198,9 @@ gulp.task('server-dist', function () {
 gulp.task( 'deploy', function() {
 
     var conn = ftp.create( {
-        host:     '',
-        user:     '',
-        password: '',
+        host:     'pavelshmidt.ru',
+        user:     'ct58641_pavel',
+        password: 'kgtu2011',
         parallel: 10,
         log: gutil.log
     } );
@@ -192,6 +210,6 @@ gulp.task( 'deploy', function() {
     ];
 
     return gulp.src(globs, { base: 'dist/', buffer: false })
-        .pipe(conn.dest( 'path/public_html/'));
+        .pipe(conn.dest( 'work2/public_html/'));
 
 });

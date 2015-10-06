@@ -1,6 +1,6 @@
 // Начальные настройки
-$container-width: 1020px;
-$footer-height: 1000px;
+$container-width: 1045px;
+$footer-height: 73px;
 
 // Прижимние футера к низу
 .html {
@@ -11,7 +11,7 @@ $footer-height: 1000px;
 }
 .wrapper {
   min-height: 100%;
-  width: 100%;
+  min-width: 100%;
   &:after {
     content: '';
     display: block;
@@ -20,26 +20,27 @@ $footer-height: 1000px;
 }
 .main-footer {
   margin-top: $footer-height*-1;
-  max-width: $container-width;
+  width: 100%;
   height: $footer-height;
 }
 // Контейнеры
 .container {
   position: relative;
   margin: 0 auto;
-  max-width: $container-width;
+  max-width: 90%;
+  width: $container-width;
   height: 100%;
   @extend %clearfix;
 }
 .container-middle {
   position: relative;
   margin: 0 auto;
-  max-width: $container-width;
+  width: $container-width;
   height: 100%;
   @extend %middle;
 }
-.container-abs {
-  position: absolute;
+.container-cleafix {
+  position: relative;
   margin: 0 auto;
   width: $container-width;
   height: 100%;
@@ -110,3 +111,7 @@ $footer-height: 1000px;
     vertical-align: middle;
   }
 }
+.align-middle {
+  @extend %middle;
+}
+.placeholder { color: #aaa; }
