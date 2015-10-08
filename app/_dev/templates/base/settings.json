@@ -1,0 +1,34 @@
+{
+  "logo": {
+    "wrap":"wrap",
+    "img":"/images/logo.png",
+    "link":"#",
+    "alt":"Лого"
+  },
+  "navigation": {
+    "wrap":"wrap",
+    "nav": {
+      "itemName":["Name1","Name2","Name3","Name4"],
+      "itemLink":["#","#","#","#"]
+    },
+    "subnav":[
+      {
+        "itemName":["SubName1","SubName2","SubName3"],
+        "itemLink":["1#","2#","#"]
+      }
+    ]
+  },
+  "item": {
+    "name":"name1",
+    "img":"/images/Image1.png",
+    "title":"Title",
+    "subtitle":"subtitle",
+    "desc":"DescriptionDescriptionDescription",
+    "btn":[
+      {
+        "link":"1#",
+        "text":"Button"
+      }
+    ]
+  }
+}

@@ -19,7 +19,9 @@
     "gulp-util": "^3.0.6",
     "vinyl-ftp": "^0.4.4",
     "wiredep": "^2.2.2",
-    "gulp.spritesmith": "^4.1.1"
+    "gulp.spritesmith": "^4.1.1",
+    "gulp-data": "^1.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+  }
 }

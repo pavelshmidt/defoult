@@ -16,6 +16,8 @@ var gulp = require("gulp"),
     gutil = require('gulp-util'),
     ftp = require('vinyl-ftp'),
     spritesmith = require('gulp.spritesmith'),
+    data = require('gulp-data'),
+    fs = require("fs");
     reload = browserSync.reload;
 
 // ====================================================
@@ -23,10 +25,15 @@ var gulp = require("gulp"),
 // ============== Локальная разработка APP ============
 
 // Компилируем Jade в html
+
 gulp.task('jade', function() {
+
     gulp.src('app/_dev/templates/pages/*.jade')
+        .pipe(data(function(file) {
+            return JSON.parse(fs.readFileSync('./app/_dev/templates/base/settings.json'));
+        }))
         .pipe(jade({
-            pretty: true
+            pretty: true,
         }))
         .on('error', log)
         .pipe(gulp.dest('app/'))
@@ -66,6 +73,7 @@ gulp.task('wiredep', function () {
 // слежка и запуск задач 
 gulp.task('watch', function () {
     gulp.watch('app/_dev/templates/**/*.jade', ['jade']);
+    gulp.watch('app/_dev/templates/**/*.json', ['jade']);
     gulp.watch('bower.json', ['wiredep']);
     gulp.watch('app/_dev/styles/**/*.scss', ['sass']);
     gulp.watch([

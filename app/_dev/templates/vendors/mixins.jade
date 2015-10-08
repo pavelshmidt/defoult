@@ -1,36 +1,42 @@
 //- Лого
 mixin logo(logo)
+    //- Проверяем наличие префикса
     -if (logo.prefix === undefined) {logo.prefix=''} else {logo.prefix=logo.prefix+'-'}
-    div(class=logo.prefix + 'logo__wrap')
-            a(href=logo.link, class=logo.prefix + 'logo')
-                if logo.img!=undefined
-                    div(class=logo.prefix + 'logo__wrap-img')
-                        img(src=logo.img, class=logo.prefix + 'logo__img', alt='картинка')
+    //- Создаём ссылку
+    if logo.img!=undefined
+        a(href=logo.link, class=logo.prefix + 'logo' + ' logo_' + logo.wrap)
+            //- Создаём картинку
+            if logo.img!=undefined
                 if logo.text!=undefined || logo.subText!=undefined
-                    div(class=logo.prefix + 'logo__text')
-                        -if (logo.textAddClass === undefined) {logo.textAddClass=''} else {logo.textAddClass=' '+ logo.textAddClass}
-                        if logo.text!=undefined
-                            div(class=logo.prefix + 'logo__title' + logo.textAddClass)=logo.text
-                        if logo.subText!=undefined
-                            div(class=logo.prefix + 'logo__subtitle' + logo.textAddClass)=logo.subText
-                if logo.textHide!=undefined
-                    span.text-hide= logo.textHide
+                    div(class=logo.prefix + 'logo__wrap-img')
+                        img(src=logo.img, class=logo.prefix + 'logo__img', alt=logo.alt)
+                else
+                    img(src=logo.img, class=logo.prefix + 'logo__img ', alt=logo.alt)
+            //- Создаём текст к лого
+            if logo.text!=undefined || logo.subText!=undefined
+                div(class=logo.prefix + 'logo__wrap-text')
+                    if logo.text!=undefined
+                        div(class=logo.prefix + 'logo__title')=logo.text
+                    if logo.subText!=undefined
+                        div(class=logo.prefix + 'logo__subtitle')=logo.subText
 //- Меню
 mixin nav (navigatoin)
+    //- Проверяем наличие префикса
     -if (navigatoin.prefix === undefined) {navigatoin.prefix=''} else {navigatoin.prefix=navigatoin.prefix+'-'}
-        nav(class=navigatoin.prefix + 'nav')
-            div(class=navigatoin.prefix + 'menu__wrap')
-                ul(class=navigatoin.prefix + 'menu')
-                    each link,text in navigatoin.nav
-                        li(class=navigatoin.prefix + 'menu__item')
-                            a(href=link, class=navigatoin.prefix + 'menu__link')= text
-                            if navigatoin.subnav!=undefined
-                                -if (navigatoin.subnav.prefix === undefined) {navigatoin.subnav.prefix=''} else {navigatoin.subnav.prefix=navigatoin.subnav.prefix+'-'}
-                                div(class=navigatoin.subnav.prefix + navigatoin.subnav.name + '__wrap', id=navigatoin.subnav.name)
-                                    ul(class=navigatoin.subnav.prefix + navigatoin.subnav.name)
-                                        each link,text in navigatoin.subnav.nav
-                                            li(class=navigatoin.subnav.prefix + navigatoin.subnav.name + '__item')
-                                                a(href=link, class=navigatoin.subnav.prefix + navigatoin.subnav.name + '__link')= text
+    //- Раздел навигации
+    nav(class=navigatoin.prefix + 'nav')
+        //-Меню
+        ul(class=navigatoin.prefix + 'menu' + ' menu_' + navigatoin.wrap)
+            each val,index in navigatoin.nav.itemName
+                li(class=navigatoin.prefix + 'menu__item')
+                    a(href=navigatoin.nav.itemLink[index], class=navigatoin.prefix + 'menu__link')= val
+                    //- Подменю
+                    if navigatoin.subnav!=undefined
+                            if index<=navigatoin.subnav.length-1
+                                ul(class=navigatoin.prefix+ 'subnav '+ navigatoin.prefix + 'subnav_wrap')
+                                    each val,indx in navigatoin.subnav[index].itemName
+                                        li(class=navigatoin.prefix + 'subnav__item ')
+                                            a(href=navigatoin.subnav[index].itemLink[indx], class=navigatoin.prefix + 'subnav__link')= val
 //- Формы
 mixin form (form)
     -if (form.prefix === undefined) {form.prefix=''} else {form.prefix=form.prefix+'-'}
@@ -50,36 +56,41 @@ mixin cont (cont)
             a(href=cont.type + ':'+ cont.val, class=cont.prefix + cont.type + '__link')=cont.text
 //- Айтемы секции
 mixin item (items)
-    -if (items.wrapAddClass === undefined) {items.wrapAddClass=''} else {items.wrapAddClass=' '+ items.wrapAddClass}
-    div(class=items.name + '__wrap'+ items.wrapAddClass)
-        section(class=items.name)
-            if items.titleFirst!=undefined
-                h3(class=items.name + '__title subheader')=items.titleFirst
-            if items.img!=undefined
-                div(class=items.name + '__img-wrap')
-                    img(class=items.name + '__img', src=items.img, alt='картинка')
-            if items.icon!=undefined
-                div(class=items.name + '__ic-wrap')
-                    i(class=items.name + '__ic' + ' ' + items.icon)
-            div(class=items.name + '__contant-wrap')
-                if items.title!=undefined
-                    -if (items.titleAddClass === undefined) {items.titleAddClass=''} else {items.titleAddClass=' '+ items.titleAddClass}
-                    h3(class=items.name + '__title subheader'+ items.titleAddClass)=items.title
-                if items.subtitle != undefined
-                    div(class=items.name + '__subtitle')=items.subtitle
-                if items.desc != undefined
-                    p(class=items.name + '__desc')=items.desc
-                        if items.links != undefined
-                            each val, index in items.links
-                                a(href=items.links[index].link, class=items.name + '__link')=items.links[index].text
-                        if items.descBlock != undefined
-                            each val, index in items.descBlock
-                                span(class=items.name + '__desc__block')=val
-                if items.btn != undefined
-                    each val,index in items.btn
-                        -if (items.btn[index].btnAddClass === undefined) {items.btn[index].btnAddClass=''} else {items.btn[index].btnAddClass=' ' + items.btn[index].btnAddClass}
-                        a(href=items.btn[index].link, class=items.name + '__btn' + items.btn[index].btnAddClass)=items.btn[index].text
-                if items.list != undefined
-                    ul(class=items.name+ '-list'+ ' no-bullet')
-                        each val,index in items.list
-                            li(class=items.name+ '-list__item')=val
+    article(class=items.name)
+        //- Загаловок перед изображением
+        if items.titleFirst!=undefined
+            h3(class=items.name + '__title')=items.titleFirst
+        //- Изображение
+        if items.img!=undefined
+            div(class=items.name + '__wrap-img')
+                img(class=items.name + '__img', src=items.img, alt=items.alt)
+        //- Иконка
+        if items.icon!=undefined
+            div(class=items.name + '__wrap-ic')
+        //- Основной контент
+        div(class=items.name + '__wrap-contant')
+            //- Заголовок
+            if items.title!=undefined
+                h3(class=items.name + '__title')=items.title
+            //- Подзаголовок
+            if items.subtitle != undefined
+                div(class=items.name + '__subtitle')=items.subtitle
+            //- Описание
+            if items.desc != undefined
+                p(class=items.name + '__desc')=items.desc
+                    //- Ссылки в описании
+                    if items.links != undefined
+                        each val, index in items.links
+                            a(href=items.links[index].link, class=items.name + '__link')=items.links[index].text
+                    //- Блоки в описнии
+                    if items.descBlock != undefined
+                        each val, index in items.descBlock
+                            div(class=items.name + '__desc__block')=val
+            //- Кнопки
+            if items.btn != undefined
+                each val,index in items.btn
+                    a(href=items.btn[index].link, class=items.name + '__btn')=items.btn[index].text
+            if items.list != undefined
+                ul(class=items.name+ '-list')
+                    each val,index in items.list
+                        li(class=items.name+ '-list__item')=val
